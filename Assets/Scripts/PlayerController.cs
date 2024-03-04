@@ -21,10 +21,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
 
     public Gun gun;
+
+    private bool _isGrounded = true;
+    private float _maxMoveSpeed = 20f;
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _isGrounded = true;
+        _maxMoveSpeed = _speed;
 
         if (_jumpAction) _jumpAction.action.performed += OnJumpPerformed;
         if (_lookAction) _lookAction.action.performed += OnLookPerformed;
@@ -35,6 +40,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         OnMovePerformed();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,10 +93,24 @@ public class PlayerController : MonoBehaviour
         Vector2 input = _moveAction.action.ReadValue<Vector2>();
         Vector3 movement = transform.forward * input.y + transform.right * input.x;
 
-        movement *= _speed;
+        Vector3 vel = _rigidbody.velocity;
+        float gravity = vel.y;
 
-        //transform.Translate(movement * Time.deltaTime);
-        _rigidbody.MovePosition(transform.position + (movement * Time.deltaTime));
+        if (input == Vector2.zero)
+        { // if not moving, stop moving, just fall
+            vel.x = 0;
+            vel.z = 0;
+        }
+        else // if inputting movement
+        {
+            vel += movement;
+            vel.Normalize();
+            vel *= _speed;
+            vel.y = gravity;
+        }
+
+
+        _rigidbody.velocity = vel;
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext cbc)
