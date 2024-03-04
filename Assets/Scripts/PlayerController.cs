@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigidbody;
 
+    public Gun gun;
+
+    [SerializeField] private Camera _playerCamera;
+
     [SerializeField] private int _health = 1;
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _jumpForce = 15f;
@@ -36,7 +40,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnShootPerformed(InputAction.CallbackContext cbc)
     {
-        
+        Vector2 reticle = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
+        gun.Shoot(reticle);
     }
 
     private void OnLookPerformed(InputAction.CallbackContext cbc)
@@ -44,11 +49,12 @@ public class PlayerController : MonoBehaviour
         Vector2 input = cbc.ReadValue<Vector2>();
         input *= _lookSensitivity;
 
-        Vector3 xRotation = new Vector3(input.y, 0, 0);
+        float xRotation = input.y;
         Vector3 yRotation = new Vector3(0, input.x, 0);
 
         // Use xRotation to lift & lower camera
         transform.Rotate(yRotation);
+        _playerCamera.transform.Rotate(Vector3.right, -xRotation);
     }
 
     private void OnMovePerformed()
