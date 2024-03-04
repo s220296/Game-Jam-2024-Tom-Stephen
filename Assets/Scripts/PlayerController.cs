@@ -37,6 +37,23 @@ public class PlayerController : MonoBehaviour
         OnMovePerformed();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Vector3 midLevelDir = new Vector3(
+            other.transform.position.x - transform.position.x,
+            0,
+            other.transform.position.z - transform.position.z
+            );
+        bool rayHit = Physics.Raycast(transform.position, midLevelDir, out RaycastHit hit, 3f);
+
+        if(!rayHit || hit.collider != other)
+        {
+            float translateDiff = (other.bounds.center.y + other.bounds.extents.y)
+                - (transform.position.y - transform.lossyScale.y * 0.5f);
+            transform.Translate(0, translateDiff, 0);
+        }
+    }
+
     private void OnShootPerformed(InputAction.CallbackContext cbc)
     {
         Vector2 reticle = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
