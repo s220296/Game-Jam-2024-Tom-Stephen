@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
     
     private int _currentAmmo = 0;
     private float _fireTimer = 0f;
-    
+
     // Start is called before the first frame update
     void Start()
     {

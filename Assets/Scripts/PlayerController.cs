@@ -6,10 +6,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
-
-    public Gun gun;
-
     [SerializeField] private Camera _playerCamera;
 
     [SerializeField] private int _health = 1;
@@ -22,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionReference _lookAction = null;
     [SerializeField] private InputActionReference _shootAction = null;
 
+    private Rigidbody _rigidbody;
+
+    public Gun gun;
     // Start is called before the first frame update
     void Start()
     {

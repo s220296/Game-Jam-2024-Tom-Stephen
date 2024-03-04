@@ -24,6 +24,10 @@ public class Enemy : MonoBehaviour
     public void Kill()
     {
         _trigger.CallTrigger();
+
+        Level level = FindObjectOfType<Level>();
+        if (level) level.ReduceKillsRemaining();
+
         Destroy(gameObject);
     }
 
