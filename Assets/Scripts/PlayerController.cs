@@ -25,12 +25,18 @@ public class PlayerController : MonoBehaviour
 
         if (_jumpAction) _jumpAction.action.performed += OnJumpPerformed;
         if (_lookAction) _lookAction.action.performed += OnLookPerformed;
+        if (_shootAction) _shootAction.action.performed += OnShootPerformed;
     }
 
     // Update is called once per frame
     void Update()
     {
         OnMovePerformed();
+    }
+
+    private void OnShootPerformed(InputAction.CallbackContext cbc)
+    {
+        
     }
 
     private void OnLookPerformed(InputAction.CallbackContext cbc)

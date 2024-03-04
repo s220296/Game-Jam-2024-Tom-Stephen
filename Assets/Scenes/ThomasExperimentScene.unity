@@ -518,7 +518,7 @@ MonoBehaviour:
   _moveAction: {fileID: -6589537291952081018, guid: 243b450b66cc32846b56742c0e46ebfd, type: 3}
   _jumpAction: {fileID: 252544414161064957, guid: 243b450b66cc32846b56742c0e46ebfd, type: 3}
   _lookAction: {fileID: -4759063647845302814, guid: 243b450b66cc32846b56742c0e46ebfd, type: 3}
-  _shootAction: {fileID: 0}
+  _shootAction: {fileID: -6343043972551349840, guid: 243b450b66cc32846b56742c0e46ebfd, type: 3}
 --- !u!54 &1314377297
 Rigidbody:
   m_ObjectHideFlags: 0
