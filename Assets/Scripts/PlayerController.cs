@@ -44,12 +44,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        // Half way between the middle of the character and contact point
+        // Lifted to the center of the player and checked for distance of player's
+        // y-extent
+        Vector3 castPoint = collision.GetContact(0).point;
+        castPoint.y = transform.position.y;
+
+        bool rayHit = Physics.Raycast(castPoint, Vector3.down, transform.lossyScale.y + 0.01f);
+        if (rayHit)
+            _isGrounded = true;
+
+        Debug.Log(_isGrounded);
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        
+        bool rayHit = Physics.Raycast(transform.position, Vector3.down, transform.lossyScale.y + 0.01f);
+        if (!rayHit)
+            _isGrounded = false;
+
+        Debug.Log(_isGrounded);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -115,7 +129,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnJumpPerformed(InputAction.CallbackContext cbc)
     {
+        if (!_isGrounded) return;
         Vector3 jump = new Vector3(0, _jumpForce, 0);
         _rigidbody.AddForce(jump, ForceMode.VelocityChange);
+        _isGrounded = false;
     }
 }
