@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6042207554894747708}
   - component: {fileID: 6042207554894747680}
   - component: {fileID: 6042207554894747681}
+  - component: {fileID: 6042207555939800690}
   m_Layer: 2
   m_Name: Base Player
   m_TagString: Untagged
@@ -113,7 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b116d1c43e56a1d4c9d5ce237942a999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 6042207556205781181}
   _playerCamera: {fileID: 6042207556099527175}
   _health: 1
   _speed: 10
@@ -123,6 +123,7 @@ MonoBehaviour:
   _jumpAction: {fileID: 252544414161064957, guid: 243b450b66cc32846b56742c0e46ebfd, type: 3}
   _lookAction: {fileID: -4759063647845302814, guid: 243b450b66cc32846b56742c0e46ebfd, type: 3}
   _shootAction: {fileID: -6343043972551349840, guid: 243b450b66cc32846b56742c0e46ebfd, type: 3}
+  gun: {fileID: 6042207556205781181}
 --- !u!54 &6042207554894747681
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,6 +140,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!65 &6042207555939800690
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6042207554894747706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.05, y: 0.95, z: 1.05}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6042207556099527173
 GameObject:
   m_ObjectHideFlags: 0
