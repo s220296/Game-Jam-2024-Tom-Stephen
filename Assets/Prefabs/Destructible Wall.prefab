@@ -110,6 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09211cb9be104864e88bc59011149ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brokenVersion: {fileID: 8038550721764968549, guid: fb76e89c794d2de4893e6ed306815360, type: 3}
-  _destructionType: 2
-  _destructionForce: {x: -222.01, y: 554, z: -15.88}
+  _brokenVersion: {fileID: 4099802476292763849, guid: a3ed751fa81e173488cbc562a3a18abd, type: 3}
+  _destructionType: 1
+  _destructionForce: {x: 707.09, y: 554, z: -15.88}

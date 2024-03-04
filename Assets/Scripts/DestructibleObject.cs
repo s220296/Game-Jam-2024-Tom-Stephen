@@ -38,13 +38,13 @@ public class DestructibleObject : MonoBehaviour
             Transform child = broken.transform.GetChild(i);
             
             Rigidbody childRb = null;
-            if (child) childRb = GetComponent<Rigidbody>();
+            if (child) childRb = child.GetComponent<Rigidbody>();
             if (childRb)
             {
                 switch(_destructionType)
                 {
                     case DestructionType.EXPLOSION:
-                    childRb.AddExplosionForce(_destructionForce.x, broken.transform.position, 10f);
+                    childRb.AddExplosionForce(_destructionForce.x, broken.transform.position, 100f);
                         break;
                     case DestructionType.DIRECTION:
                     childRb.AddForce(_destructionForce);
