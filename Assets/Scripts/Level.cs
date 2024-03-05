@@ -33,6 +33,18 @@ public class Level : MonoBehaviour
         if(_playerHUD) _playerHUD.SetRequiredKillsRemaining(_requiredKillsRemaining);
     }
 
+    private void OnEnable()
+    {
+        AudioSource[] audios = GetComponents<AudioSource>();
+        foreach(AudioSource audio in audios) { audio.Play(); }
+    }
+
+    private void OnDisable()
+    {
+        AudioSource[] audios = GetComponents<AudioSource>();
+        foreach (AudioSource audio in audios) { audio.Stop(); }
+    }
+
     public void Win()
     {
         _stopTimer = true;
