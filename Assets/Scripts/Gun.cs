@@ -10,10 +10,14 @@ public class Gun : MonoBehaviour
     private int _currentAmmo = 0;
     private float _fireTimer = 0f;
 
+    private PlayerHUD _playerHUD;
+
     // Start is called before the first frame update
     void Start()
     {
         _currentAmmo = _maxAmmo;
+        _playerHUD = FindObjectOfType<PlayerHUD>(true);
+        if(_playerHUD) _playerHUD.SetPlayerCurrentAmmo(_currentAmmo, _maxAmmo);
     }
 
     public void Shoot(Vector2 reticlePos)
@@ -24,6 +28,10 @@ public class Gun : MonoBehaviour
         if (_currentAmmo <= 0) return;
         _currentAmmo--;
 
+        // Set ammo counter in hud
+        if (_playerHUD) _playerHUD.SetPlayerCurrentAmmo(_currentAmmo, _maxAmmo);
+
+        // Cast ray for shot hit detection
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(reticlePos.x, reticlePos.y, 0));
 
         bool rayHit = Physics.Raycast(ray, out RaycastHit hit, 200f);
@@ -37,6 +45,7 @@ public class Gun : MonoBehaviour
     public void Reload()
     {
         _currentAmmo = _maxAmmo;
+        if(_playerHUD) _playerHUD.SetPlayerCurrentAmmo(_currentAmmo, _maxAmmo);
     }
 
     // Update is called once per frame

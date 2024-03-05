@@ -23,17 +23,18 @@ public class PlayerController : MonoBehaviour
     public Gun gun;
 
     private bool _isGrounded = true;
-    private float _maxMoveSpeed = 20f;
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _isGrounded = true;
-        _maxMoveSpeed = _speed;
 
         if (_jumpAction) _jumpAction.action.performed += OnJumpPerformed;
         if (_lookAction) _lookAction.action.performed += OnLookPerformed;
         if (_shootAction) _shootAction.action.performed += OnShootPerformed;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -53,8 +54,6 @@ public class PlayerController : MonoBehaviour
         bool rayHit = Physics.Raycast(castPoint, Vector3.down, transform.lossyScale.y + 0.01f);
         if (rayHit)
             _isGrounded = true;
-
-        Debug.Log(_isGrounded);
     }
 
     private void OnCollisionExit(Collision collision)
@@ -62,8 +61,6 @@ public class PlayerController : MonoBehaviour
         bool rayHit = Physics.Raycast(transform.position, Vector3.down, transform.lossyScale.y + 0.01f);
         if (!rayHit)
             _isGrounded = false;
-
-        Debug.Log(_isGrounded);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,7 +72,8 @@ public class PlayerController : MonoBehaviour
             );
         bool rayHit = Physics.Raycast(transform.position, midLevelDir, out RaycastHit hit, 3f);
 
-        if(!rayHit || hit.collider != other)
+        // If the step is not at the mid level and is lower than our player
+        if((!rayHit || hit.collider != other) && other.transform.position.y < transform.position.y)
         {
             float translateDiff = (other.bounds.center.y + other.bounds.extents.y)
                 - (transform.position.y - transform.lossyScale.y * 0.5f);
@@ -99,7 +97,14 @@ public class PlayerController : MonoBehaviour
 
         // Use xRotation to lift & lower camera
         transform.Rotate(yRotation);
-        _playerCamera.transform.Rotate(Vector3.right, -xRotation);
+
+        float dot = Mathf.Abs(Vector3.Dot(_playerCamera.transform.forward, Vector3.up));
+        if (dot < 0.95)
+            _playerCamera.transform.Rotate(Vector3.right, -xRotation);
+        // If gone past the limit, reset
+        dot = Mathf.Abs(Vector3.Dot(_playerCamera.transform.forward, Vector3.up));
+        if (dot >= 0.95)
+            _playerCamera.transform.Rotate(Vector3.right, xRotation);
     }
 
     private void OnMovePerformed()
@@ -122,7 +127,6 @@ public class PlayerController : MonoBehaviour
             vel *= _speed;
             vel.y = gravity;
         }
-
 
         _rigidbody.velocity = vel;
     }
