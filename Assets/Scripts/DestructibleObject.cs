@@ -58,11 +58,14 @@ public class DestructibleObject : MonoBehaviour
 
     public void Destruct()
     {
-        GameObject broken = Instantiate(_brokenVersion, transform.position, transform.rotation);
+        if (_brokenVersion != null)
+        {
+            GameObject broken = Instantiate(_brokenVersion, transform.position, transform.rotation);
 
-        ApplyDestructionForce(broken);
+            ApplyDestructionForce(broken);
 
-        Destroy(broken, 15f);
+            Destroy(broken, 15f);
+        }
         Destroy(gameObject);
     }
 

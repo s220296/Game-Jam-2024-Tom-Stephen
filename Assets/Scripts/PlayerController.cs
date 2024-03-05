@@ -133,6 +133,7 @@ public class PlayerController : MonoBehaviour
         }
         else // if inputting movement
         {
+            vel.y = 0; // to reduce mid-air stopping
             vel += movement;
             vel.Normalize();
             vel *= _speed;
