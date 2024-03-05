@@ -38,6 +38,16 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    void OnDestroy()
+    {
+        if (_jumpAction) _jumpAction.action.performed -= OnJumpPerformed;
+        if (_lookAction) _lookAction.action.performed -= OnLookPerformed;
+        if (_shootAction) _shootAction.action.performed -= OnShootPerformed;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     // Update is called once per frame
     void Update()
     {

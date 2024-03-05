@@ -10,11 +10,16 @@ public class PauseMenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _pauseKey.action.performed += QuitToMenu;
+        if (_pauseKey) _pauseKey.action.performed += QuitToMenu;
     }
 
     public void QuitToMenu(InputAction.CallbackContext cbc)
     {
         SceneManager.LoadSceneAsync(0);
+    }
+
+    private void OnDestroy()
+    {
+        if(_pauseKey) _pauseKey.action.performed -= QuitToMenu;
     }
 }
