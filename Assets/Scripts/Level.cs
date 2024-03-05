@@ -47,6 +47,8 @@ public class Level : MonoBehaviour
 
     public void Win()
     {
+        if (_requiredKillsRemaining > 0) return;
+
         _stopTimer = true;
 
         if (_currentTimer < _goldTime)
