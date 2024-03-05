@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         float dot = Mathf.Abs(Vector3.Dot(_playerCamera.transform.forward, Vector3.up));
         if (dot < 0.95)
             _playerCamera.transform.Rotate(Vector3.right, -xRotation);
-        // If gone past the limit, reset
+        // If gone past the limit, undo
         dot = Mathf.Abs(Vector3.Dot(_playerCamera.transform.forward, Vector3.up));
         if (dot >= 0.95)
             _playerCamera.transform.Rotate(Vector3.right, xRotation);

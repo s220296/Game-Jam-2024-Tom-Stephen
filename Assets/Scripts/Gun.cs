@@ -11,12 +11,14 @@ public class Gun : MonoBehaviour
     private float _fireTimer = 0f;
 
     private PlayerHUD _playerHUD;
+    private AudioSource _gunAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         _currentAmmo = _maxAmmo;
         _playerHUD = FindObjectOfType<PlayerHUD>(true);
+        _gunAudio = GetComponent<AudioSource>();
         if(_playerHUD) _playerHUD.SetPlayerCurrentAmmo(_currentAmmo, _maxAmmo);
     }
 
@@ -30,6 +32,7 @@ public class Gun : MonoBehaviour
 
         // Set ammo counter in hud
         if (_playerHUD) _playerHUD.SetPlayerCurrentAmmo(_currentAmmo, _maxAmmo);
+        if (_gunAudio) _gunAudio.Play();
 
         // Cast ray for shot hit detection
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(reticlePos.x, reticlePos.y, 0));
