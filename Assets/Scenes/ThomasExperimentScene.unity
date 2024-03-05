@@ -1237,8 +1237,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1414741841091097122, guid: 7d8f1d2ba06e4384f81006d310b5d3d1, type: 3}
+      propertyPath: m_Name
+      value: Layout - HUD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d8f1d2ba06e4384f81006d310b5d3d1, type: 3}
+--- !u!1 &1414741839190256518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1414741839566650785, guid: 7d8f1d2ba06e4384f81006d310b5d3d1, type: 3}
+  m_PrefabInstance: {fileID: 1414741839190256517}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1414741839190256519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414741839190256518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af93214e9a194c4a8f19cbc68230f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseKey: {fileID: -7015851056127010257, guid: 243b450b66cc32846b56742c0e46ebfd, type: 3}
 --- !u!1001 &6042207555939800688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1246,6 +1268,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6042207554894747680, guid: dbf0040fd40d8484a9c13dae166065e4, type: 3}
+      propertyPath: _lookSensitivity
+      value: 0.36
+      objectReference: {fileID: 0}
     - target: {fileID: 6042207554894747706, guid: dbf0040fd40d8484a9c13dae166065e4, type: 3}
       propertyPath: m_Name
       value: Player

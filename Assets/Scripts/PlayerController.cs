@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public Gun gun;
 
     private bool _isGrounded = true;
+
     // Start is called before the first frame update
     void Start()
     {
