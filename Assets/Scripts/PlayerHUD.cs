@@ -20,7 +20,7 @@ public class PlayerHUD : MonoBehaviour
         switch(medal)
         {
             case Level.Medal.NONE:
-                _medalDisplay.text = "NONE";
+                _medalDisplay.text = "DO BETTER";
                 _medalDisplay.color = Color.gray;
                 break;
             case Level.Medal.BRONZE:
